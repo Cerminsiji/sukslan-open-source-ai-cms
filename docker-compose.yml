@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  dashboard:
+    image: sukslan/dashboard:v1.0.0
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  worker-api:
+    image: sukslan/worker-api:v1.0.0
+    ports:
+      - "8787:8787"
+    environment:
+      OPENAI_KEY: ${OPENAI_KEY}
+      SERP_API: ${SERP_API}
+    restart: unless-stopped
